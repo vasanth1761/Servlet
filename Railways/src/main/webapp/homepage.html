@@ -49,6 +49,7 @@
     margin-top: 10px;
     border-radius:10px;
     cursor:pointer;
+   
     
 
 }
@@ -60,23 +61,33 @@
     text-decoration:none;
     color:black;
     font-weight: bold;
-}  
+} 
+input[type=submit]
+{
+background-color:orange;
+color:white;
+ padding:10px;
+ text-align:center;
+ border-radius:10px;
+}
+ 
     </style>
     
 </head>
 
-<body class="bodyregister">
-<form action="RailwayProject">
+<body style="background-colour:blue">
+<form action="RailwayProject" >
     <div class="form">
         <h2>Register</h2>
         <input type="text"name="name"placeholder="Enter the name">
         <input type="email"name="email"placeholder="email">
         <input type="date"name="date"placeholder="DOB">
-        <input type="place"name="place"placeholder="Location">
+        <input type="text"name="location"placeholder="Location">
         <input type="number"name="number" placeholder="phone">
-        <input type="password"placeholder="Password">
-        <input type="password"placeholder="ConfirmPassword">
+        <input type="password"name="password"placeholder="Password">
+        <input type="password"placeholder="ConfirmPassword"><br><br>
         <input type ="submit" value="login">
+    
         
         
 
