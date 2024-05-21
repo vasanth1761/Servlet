@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+.form
+{
+    width: 250px;
+    height:500px;
+    background-color: black;
+    position: absolute;
+    margin-top: 20px;
+    left: 500px;
+    border-radius:10px;
+    padding :25px;
+    padding-bottom: 1px;
+    right: 10px;
+    }
+    .form h2{
+    width:200px;
+    
+    text-align: center;
+    color:orange;
+    font-size:22px;
+    background-color: white;
+    border-radius: 10px;
+    margin:5px;
+    padding:8px;
+
+}
+.form input{
+    width: 240px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid orange;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    color:white;
+    letter-spacing: 1px;
+    margin-top: 10px; 
+    }
+    .btn{
+    width:240px;
+    height:30px;
+    background:orange;
+    border:none;
+    margin-top: 10px;
+    border-radius:10px;
+    cursor:pointer;
+   
+    
+
+}
+.btn:hover {
+    background-color: white;
+
+}
+.btn a{
+    text-decoration:none;
+    color:black;
+    font-weight: bold;
+} 
+input[type=submit]
+{
+background-color:orange;
+color:white;
+ padding:10px;
+ text-align:center;
+ border-radius:10px;
+}
+ 
+    </style>
+</head>
+<body>
+<form action="userDetails" method="POST">
+<div class="form">
+        <h2>Register</h2>
+        <input type="text"name="name"placeholder="name">
+        <input type="email" name="email"placeholder="email">
+        <input type="number"name="number"placeholder="ph">
+        <input type="submit"value="submit">
+        </div>
+</form>
+
+</body>
+</html>
