@@ -2,13 +2,16 @@ package com.railways;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.railway.model.railwayPojo;
 import com.railway.model.userP;
 import com.railways.dao.userImpl;
 
@@ -19,6 +22,7 @@ import com.railways.dao.userImpl;
 public class userDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        userP obj=new userP();
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,10 +36,13 @@ public class userDetails extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 //		String userName=request.getParameter("name");
 //		String email=request.getParameter("email");
 //		String phone=request.getParameter("number");
+//		RequestDispatcher req=request.getRequestDispatcher("user.jsp");
+//		req.forward(request, response);
+
 	}
 
 	/**
@@ -44,6 +51,7 @@ public class userDetails extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
+//		doGet(request,response);
 		String userName=request.getParameter("name");
 		String email=request.getParameter("email");
 		String phone=request.getParameter("number");
@@ -58,7 +66,24 @@ public class userDetails extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	    userImpl obj1=new userImpl();
+	    try {
+			obj1.insertTable();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+//	    RequestDispatcher req=request.getRequestDispatcher("user.html");
+//		req.forward(request, response);
+
+	    RequestDispatcher req=request.getRequestDispatcher("user.jsp");
+		req.forward(request, response);
+	    
+   
 	}
 
 }
