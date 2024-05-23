@@ -44,6 +44,7 @@ padding:20px;
 			<td>email</td>
 			<td>phonenumber</td>
 			<td>Delete</td>
+			<td>Update</td>
 			
 			
 
@@ -51,24 +52,33 @@ padding:20px;
 		<%
 		userImpl u=new userImpl();
 		ArrayList<userP> list = u.insertTable();
+		int i=1;
 		for (userP obj : list) {
 		%>
 		<tr>
-		    <td><%=obj.getId() %></td>
+		    <td><%=i++%></td>
 			<td><%=obj.getName()%></td>
 			<td><%=obj.getEmail()%></td>
 			<td><%=obj.getPhonenumber()%></td>
-			<form>
+			<form action="userDetails" method="get">
 			<td>
 			<input type="hidden" name="action" value="Delete">
-			<input type="hidden" name="action" value=<%=obj.getId() %>>
-			<button type="submit">Delete</button>	
+			<input type="hidden" name="delete" value=<%=obj.getId() %>>
+			<button type="submit" title="delete">Delete</button>
+			</form>
+		    </td>
+		
+			<td>
 			
+			<!-- <input type="hidden" name="action" value="update"> -->
+			<input type="hidden" name="updateid" value="<%=obj.getId() %>">
+			<button type="submit" onclick="location.href='update.jsp?updateid=<%= obj.getId() %> '">Update</button>
+			
+			</td>
 			<%
 			}
 			%>
 		</tr>
 	</table>
-	</form>
 </body>
 </html>

@@ -42,8 +42,64 @@ public class userDetails extends HttpServlet {
 //		String phone=request.getParameter("number");
 //		RequestDispatcher req=request.getRequestDispatcher("user.jsp");
 //		req.forward(request, response);
-
+        String action=request.getParameter("action");
+        if(action!=null)
+        switch(action)
+        {
+        case"Delete":
+        {
+        	int deleteid=Integer.parseInt(request.getParameter("delete"));
+//        	userImpl userdelete=new userImpl();
+        
+        	try {
+				userImpl.delete(deleteid);
+				
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	 RequestDispatcher req=request.getRequestDispatcher("user.jsp");
+     		req.forward(request, response);
+        	break;
+        }
+        	
+         case"update":
+        	{
+        		
+        	 userP obj1=new userP();
+        	 int upid=Integer.parseInt(request.getParameter("updateid"));
+        	 System.out.println("updateid"+upid);
+        	 obj1.setId(upid);
+        	 obj1.setName(request.getParameter("name"));
+        	 obj1.setEmail(request.getParameter("email"));
+        	 obj1.setPhonenumber(request.getParameter("number"));
+        	 try {
+				userImpl.update(obj1, upid);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	}
+        	  RequestDispatcher req=request.getRequestDispatcher("user.jsp");
+        		req.forward(request, response);
+        		
+        }
 	}
+//        case"update":
+//        {
+//        	int updateid=Integer.parseInt(request.getParameter("up"));
+//        	try {
+//				userImpl.update(obj, updateid);
+//			} catch (ClassNotFoundException | SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//        	RequestDispatcher req=request.getRequestDispatcher("user.jsp");
+//    		req.forward(request, response);
+//        }
+//      
+//        }
+//	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -82,7 +138,8 @@ public class userDetails extends HttpServlet {
 
 	    RequestDispatcher req=request.getRequestDispatcher("user.jsp");
 		req.forward(request, response);
-	    
+		
+//		protected void doPost1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    
 	}
 
