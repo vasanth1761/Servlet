@@ -19,7 +19,7 @@
         
         <input type="hidden" name="action" value="update">
 		<input type="hidden" name="updateid" value="<%=request.getParameter("updateid")%>">		
-		<button type="submit">Update</button>
+		<button type="submit" title="update">Update</button>
         </form>
        
 </body>

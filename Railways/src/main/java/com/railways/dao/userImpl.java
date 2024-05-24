@@ -55,7 +55,7 @@ public class userImpl implements userDAO {
 		p.executeUpdate();
 
 	}
-
+    
 	@Override
 	public void insert() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub

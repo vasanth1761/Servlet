@@ -15,7 +15,7 @@ border-collapse:collapse;
 width:70%; 
 background-color:white;
  margin-top:100px;
- margin-left:300px;
+ margin-left:100px;
  }
 
 td{ border:2px solid#ddd; 
@@ -37,6 +37,13 @@ padding:20px;
 			<b>REGISTERED SUCCESSFULL</b>
 		</h1>
 	</center>
+	<form action="userDetails" method="get">
+	<input type="hidden" name="action" value="search">
+	<input type="search" name="Search" placeholder="search">
+	<button type="search">search</button> 
+	</form>
+			<%-- <input type="hidden" name="delete" value=<%=obj.getId() %>> --%>
+			<!-- <button type="submit" title="search"><a href="search.jsp">search</a></button> -->
 	<table>
 		<tr class="formm">
 		    <td>userid</td>
@@ -72,7 +79,7 @@ padding:20px;
 			
 			<!-- <input type="hidden" name="action" value="update"> -->
 			<input type="hidden" name="updateid" value="<%=obj.getId() %>">
-			<button type="submit" onclick="location.href='update.jsp?updateid=<%= obj.getId() %> '">Update</button>
+			<button type="submit" title="delete" onclick="location.href='update.jsp?updateid=<%= obj.getId() %> '">Update</button>
 			
 			</td>
 			<%

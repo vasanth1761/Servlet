@@ -82,9 +82,17 @@ public class userDetails extends HttpServlet {
         	}
         	  RequestDispatcher req=request.getRequestDispatcher("user.jsp");
         		req.forward(request, response);
+        		break;
         		
+        
+        case"search":
+        {
+        	String sear =request.getParameter("Search");
+        	System.out.println(sear);
         }
 	}
+	}
+
 //        case"update":
 //        {
 //        	int updateid=Integer.parseInt(request.getParameter("up"));
