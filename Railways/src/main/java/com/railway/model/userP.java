@@ -1,5 +1,7 @@
 package com.railway.model;
 
+import java.util.ArrayList;
+
 public class userP {
   int id;
   public userP(int id, String name, String email, String phonenumber) {
@@ -50,4 +52,5 @@ public userP(String name, String email, String phonenumber,int id) {
 public userP() {
 	// TODO Auto-generated constructor stub
 }
+
 }

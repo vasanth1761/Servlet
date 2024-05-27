@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.railway.model.railwayPojo;
 import com.railway.model.userP;
@@ -49,7 +50,7 @@ public class userDetails extends HttpServlet {
         case"Delete":
         {
         	int deleteid=Integer.parseInt(request.getParameter("delete"));
-//        	userImpl userdelete=new userImpl();
+        	userImpl userdelete=new userImpl();
         
         	try {
 				userImpl.delete(deleteid);
@@ -58,6 +59,15 @@ public class userDetails extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        	try {
+        		request.setAttribute("insert",userdelete.insertTable());
+
+                
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        
         	 RequestDispatcher req=request.getRequestDispatcher("user.jsp");
      		req.forward(request, response);
         	break;
@@ -73,12 +83,20 @@ public class userDetails extends HttpServlet {
         	 obj1.setName(request.getParameter("name"));
         	 obj1.setEmail(request.getParameter("email"));
         	 obj1.setPhonenumber(request.getParameter("number"));
+        	 userImpl up=new userImpl();
         	 try {
 				userImpl.update(obj1, upid);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        	 try {
+         		request.setAttribute("insert",up.insertTable());
+
+                 
+             } catch (SQLException | ClassNotFoundException e) {
+                 e.printStackTrace();
+             }
         	}
         	  RequestDispatcher req=request.getRequestDispatcher("user.jsp");
         		req.forward(request, response);
@@ -89,7 +107,19 @@ public class userDetails extends HttpServlet {
         {
         	String sear =request.getParameter("Search");
         	System.out.println(sear);
+        
+        	try {
+        		ArrayList<userP> value=userImpl.search(sear);
+        		request.setAttribute("insert",value);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+        	
         }
+         req=request.getRequestDispatcher("user.jsp");
+		req.forward(request, response);
 	}
 	}
 
@@ -123,29 +153,33 @@ public class userDetails extends HttpServlet {
 	obj.setName(userName);
 	obj.setEmail(email);
 	obj.setPhonenumber(phone);
-		
+	userImpl obj1= new userImpl();	
 	    try {
 			userImpl.insert(obj);
+			 HttpSession session=request.getSession();
+			 session.setAttribute("name",userName);
+			request.setAttribute("insert",obj1.insertTable());
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    userImpl obj1=new userImpl();
-	    try {
-			obj1.insertTable();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    
+//	    userImpl obj1=new userImpl();
+//	    try {
+//			obj1.insertTable();
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	    
 //	    RequestDispatcher req=request.getRequestDispatcher("user.html");
 //		req.forward(request, response);
-
-	    RequestDispatcher req=request.getRequestDispatcher("user.jsp");
-		req.forward(request, response);
+	
+	 RequestDispatcher req=request.getRequestDispatcher("user.jsp");
+		 req.forward(request, response);
+		
 		
 //		protected void doPost1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    

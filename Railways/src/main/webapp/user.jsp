@@ -57,8 +57,9 @@ padding:20px;
 
 		</tr>
 		<%
-		userImpl u=new userImpl();
-		ArrayList<userP> list = u.insertTable();
+		/* userImpl u=new userImpl();
+ */		ArrayList<userP> list = (ArrayList<userP>)request.getAttribute("insert"); 
+		
 		int i=1;
 		for (userP obj : list) {
 		%>
@@ -72,12 +73,12 @@ padding:20px;
 			<input type="hidden" name="action" value="Delete">
 			<input type="hidden" name="delete" value=<%=obj.getId() %>>
 			<button type="submit" title="delete">Delete</button>
+			</td>
 			</form>
-		    </td>
+		    
 		
 			<td>
 			
-			<!-- <input type="hidden" name="action" value="update"> -->
 			<input type="hidden" name="updateid" value="<%=obj.getId() %>">
 			<button type="submit" title="delete" onclick="location.href='update.jsp?updateid=<%= obj.getId() %> '">Update</button>
 			
@@ -87,5 +88,9 @@ padding:20px;
 			%>
 		</tr>
 	</table>
+	<form action="sessionLogout" method= "get">
+	<button  type="submit"  title="Logout">Logout</button>
+	</form>
+	
 </body>
 </html>

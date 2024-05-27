@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import com.railway.model.userP;
 import com.railways.util.JDBCConnection;
@@ -25,7 +26,7 @@ public class userImpl implements userDAO {
 
 	}
 
-	public ArrayList<userP> insertTable() throws ClassNotFoundException, SQLException {
+	public  ArrayList<userP> insertTable() throws ClassNotFoundException, SQLException {
 		ArrayList<userP> user = new ArrayList<userP>();
 		Connection con = JDBCConnection.getConnection();
 		String query = "select *from user3";
@@ -56,11 +57,7 @@ public class userImpl implements userDAO {
 
 	}
     
-	@Override
-	public void insert() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-
-	}
+		
 	public static  void update(userP obj1,int id) throws ClassNotFoundException, SQLException {
 		
 		Connection con=JDBCConnection.getConnection();
@@ -72,6 +69,39 @@ public class userImpl implements userDAO {
 		p.setInt(4,id );
 		p.executeUpdate();
 	}
+	public static ArrayList<userP> search (String sear)throws ClassNotFoundException, SQLException{
+		 
+		Connection con=JDBCConnection.getConnection();
+		ArrayList<userP>val=new ArrayList<userP>();
+		String query="select *from user3 where user_name like?";
+		PreparedStatement p=con.prepareStatement(query);
+		p.setString(1,sear);
+        ResultSet re=p.executeQuery();
+		while(re.next())
+		{
+			userP userp=new userP();
+				userp.setId(re.getInt("user_id"));
+				userp.setName(re.getString("user_name"));
+				userp.setEmail(re.getString("user_email"));
+				userp.setPhonenumber(re.getString("user_phonenumber"));
+				val.add(userp);
+			}
+		return val;
+		}
+
+	public Object delete() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insert() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+		 
+	}
 
 	
-	}
+	
